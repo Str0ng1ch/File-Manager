@@ -3,7 +3,7 @@ import shutil
 
 
 def configuration():
-    path = os.path.abspath(os.curdir) + '\\Home\\'
+    path = os.path.abspath(os.curdir) + '/Home/'
     if os.path.exists(path):
         shutil.rmtree('Home')
     os.mkdir('Home')

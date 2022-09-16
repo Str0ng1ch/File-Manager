@@ -3,7 +3,7 @@ import shutil
 from Configuration import configuration
 
 running = True
-path, user_path = configuration(), configuration().replace(os.path.abspath(os.curdir) + '\\', '')
+path, user_path = configuration(), configuration().replace(os.path.abspath(os.curdir) + '/', '')
 
 
 def create_folder():
@@ -17,19 +17,19 @@ def delete_folder():
 def between_folders():
     global path, user_path
     print('Введите путь: ', user_path, end='')
-    move = input().split('\\')[0]
-    if move == '..' and len(' '.join(user_path.split('\\')).split()) > 1:
-        path = '\\'.join(path.split('\\')[:-2]) + '\\'
-    elif move == '..' and len(' '.join(user_path.split('\\')).split()) == 1:
+    move = input().split('/')[0]
+    if move == '..' and len(' '.join(user_path.split('/')).split()) > 1:
+        path = '/'.join(path.split('/')[:-2]) + '/'
+    elif move == '..' and len(' '.join(user_path.split('/')).split()) == 1:
         print()
         print('Вы уже находитесь в корневой директории!')
     else:
         if os.path.exists(path + move):
-            path += move + '\\'
+            path += move + '/'
         else:
             print()
             print('Такой директории не существует!')
-    user_path = path.replace(os.path.abspath(os.curdir) + '\\', '')
+    user_path = path.replace(os.path.abspath(os.curdir) + '/', '')
 
 
 def create_file():
@@ -77,7 +77,7 @@ def main():
                    ('Переименование файла', rename_file),
                    ('Выход из программы', end_program)]
     while running:
-        print('Вы находитесь в директории', path.replace(os.path.abspath(os.curdir) + '\\', ''))
+        print('Вы находитесь в директории', user_path)
         for i in range(len(all_actions)):
             print(i + 1, ') ', all_actions[i][0], sep='')
         action = input('Ваше решение: ')
